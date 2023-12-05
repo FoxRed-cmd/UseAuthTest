@@ -1,0 +1,54 @@
+@model UseAuthTest.Models.ViewModels.ProfileViewModel
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+<div class="card mx-auto my-5" style="width: 50%; border-radius: 10px;">
+    <div class="card-body">
+        <form action="/Profile/Edit" method="post">
+            <div class="form-group">
+                <label for="firstName">Имя:</label>
+                <input type="text" name="User.FirstName" class="form-control" id="firstName" placeholder="Ваше имя"
+                    value="@Model.User.FirstName">
+            </div>
+            <div class="form-group">
+                <label for="secondName">Фамилия:</label>
+                <input type="text" name="User.SecondName" class="form-control" id="secondName"
+                    placeholder="Ваша фамилия" value="@Model.User.SecondName">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="User.Email" class="form-control" id="email" placeholder="Ваш email"
+                    value="@Model.User.Email" required>
+                <div class="text-danger">@Html.ValidationMessageFor(m => m.User.Email)</div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Телефон:</label>
+                <input type="tel" name="User.NumberPhone" class="form-control" id="phone"
+                    value="@Model.User.NumberPhone" placeholder="(___) ___-____">
+                <div class="text-danger">@Html.ValidationMessageFor(m => m.User.NumberPhone)</div>
+            </div>
+            <div class="form-group">
+                <label for="oPass">Старый пароль:</label>
+                <input type="password" name="OldPassword" class="form-control" id="oPass">
+                <div class="text-danger">@Html.ValidationMessageFor(m => m.User.Password)</div>
+            </div>
+            <div class="form-group">
+                <label for="nPass">Новый пароль:</label>
+                <input type="password" name="NewPassword" class="form-control" id="nPass">
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a class="btn btn-danger" href="/Profile">Отмена</a>
+        </form>
+    </div>
+</div>
+<script src="https://unpkg.com/imask"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const inputElement = document.querySelector('#phone');
+        const maskOptions = {
+            mask: '+{7}(000)000-00-00'
+        };
+        IMask(inputElement, maskOptions);
+    });
+</script>

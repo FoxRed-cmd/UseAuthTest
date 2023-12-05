@@ -1,0 +1,77 @@
+@model UseAuthTest.Models.ViewModels.LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="card mx-auto my-5" style="width: 50%; border-radius: 10px;">
+    <div class="card-header bg-dark text-white text-center" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <h4>Войдите или зарегистрируйтесь</h4>
+    </div>
+    <div class="card-body">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="reg-tab" data-toggle="tab" href="#registration">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="auth-tab" data-toggle="tab" href="#authorization">Авторизация</a>
+            </li>
+        </ul>
+
+        <!-- Регистрация -->
+        <div class="tab-content">
+            <div id="registration" class="container tab-pane active"><br>
+
+                <form method="post" action="\Login\Register">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="Email" class="form-control" id="email" placeholder="Введите email"
+                            value="@Model.UserRegistration?.Email" required>
+                        <div class="text-danger">@Html.ValidationMessageFor(m => m.UserRegistration.Email)</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Введите пароль"
+                            name="password" required>
+                        <div class="text-danger">@Html.ValidationMessageFor(m => m.UserRegistration.Password)</div>
+                    </div>
+                    <button id="btnReg" type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                </form>
+            </div>
+
+            <!-- Авторизация -->
+            <div id="authorization" class="container tab-pane fade"><br>
+                <form method="post" action="\Login\Authorize">
+                    <div class="text-danger">@Html.ValidationMessageFor(m => m.UserAuthorization.Email)</div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="emailAuth" placeholder="Введите email" name="Email"
+                            value="@Model.UserAuthorization?.Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="password" class="form-control" id="passwordAuth" placeholder="Введите пароль"
+                            name="password" required>
+                    </div>
+                    <button id="btnLogin" type="submit" class="btn btn-primary">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function ($) {
+        var storage = localStorage.getItem('nav-tabs');
+        if (storage && storage !== "#") {
+            $('.nav-tabs a[href="' + storage + '"]').tab('show');
+        }
+
+        $('ul.nav li').on('click', function () {
+            var id = $(this).find('a').attr('href');
+            localStorage.setItem('nav-tabs', id);
+        });
+
+        $('form').on('submit', function(){
+            $('#btnReg').attr('disabled', 'disabled');
+            $('#btnLogin').attr('disabled', 'disabled');
+        });
+    });
+</script>

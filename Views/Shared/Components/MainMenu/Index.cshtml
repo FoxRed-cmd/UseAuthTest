@@ -1,0 +1,17 @@
+@model bool
+
+@if (Model)
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="/Profile">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="/Login/UserSignOut">Sign Out</a>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="/Login">Sign Up</a>
+    </li>
+}

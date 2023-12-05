@@ -1,0 +1,22 @@
+@model UseAuthTest.Models.UserModel
+@{
+    ViewData["Title"] = "Profile";
+}
+<div class="card">
+    <img src="@Model.Image" width="200" class="rounded" alt="Profile Picture">
+    <div class="card-body">
+        <h5 class="card-title">@Model.FirstName @Model.SecondName</h5>
+        <div class="d-flex align-items-center">
+            <p class="card-text flex-grow-1 mb-0">Контактная информация</p>
+            <div class="text-right">
+                <a class="btn btn-primary" href="/Profile/Edit">
+                    <i class="bi bi-pencil"></i>
+                </a>
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Телефон:</strong> @Model.NumberPhone</li>
+            <li class="list-group-item"><strong>Email:</strong> @Model.Email</li>
+        </ul>
+    </div>
+</div>
