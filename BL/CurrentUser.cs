@@ -1,5 +1,5 @@
 using UseAuthTest.BL.Interfaces;
-using UseAuthTest.DAL.Helpers;
+using UseAuthTest.BL.Helpers;
 using UseAuthTest.DAL.Interfaces;
 using UseAuthTest.Models;
 

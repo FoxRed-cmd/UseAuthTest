@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace UseAuthTest.DAL.Helpers;
+namespace UseAuthTest.BL.Helpers;
 
 public static class SessionMethodsExtension
 {

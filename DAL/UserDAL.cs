@@ -37,7 +37,8 @@ public class UserDAL : IUserDAL
             Password = @Password,
             FirstName = @FirstName,
             SecondName = @SecondName,
-            NumberPhone = @NumberPhone
+            NumberPhone = @NumberPhone,
+            Image = @Image
             WHERE Id = @Id;", model);
     }
 }

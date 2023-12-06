@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UseAuthTest.BL.Interfaces;
+using UseAuthTest.Helpers;
 using UseAuthTest.Models;
 using UseAuthTest.Models.ViewModels;
 
@@ -56,6 +57,12 @@ public class ProfileController : Controller
 
         if (ModelState.IsValid)
         {
+            var file = Request.Form.Files.FirstOrDefault();
+            if(file is not null)
+            {
+                user.Image = await WebFileHelper.SaveProfileImage(user.Email, file);
+            }
+
             user.Email = model.User.Email;
             user.FirstName = model.User.FirstName;
             user.SecondName = model.User.SecondName;
